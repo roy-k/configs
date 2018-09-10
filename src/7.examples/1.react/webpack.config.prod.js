@@ -93,7 +93,9 @@ webpackConfig = merge(baseWebpackConfig, {
         new CleanWebpackPlugin(['build'], {
             root: path.resolve(__dirname, '../')
         }),
-
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
         // new ImageminPlugin({
         //     disable: process.env.NODE_ENV !== 'production',
         //     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

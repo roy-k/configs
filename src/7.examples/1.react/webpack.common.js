@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production'
+console.log(devMode, process.env.NODE_ENV);
 
 module.exports = {
     context: path.resolve(__dirname, '../src'),
@@ -34,7 +35,7 @@ module.exports = {
             {
                 test: /\.(css|styl)$/,
                 use: [
-                    {
+                    devMode ? 'style-loader' : {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
                             // publicPath: '../build'
@@ -59,6 +60,9 @@ module.exports = {
         alias: {
             img: path.resolve(__dirname, '../src/common/img'),
             css: path.resolve(__dirname, '../src/common/css'),
+            com: path.resolve(__dirname, '../src/components'),
+            con: path.resolve(__dirname, '../src/containers'),
+            cos$: path.resolve(__dirname, '../src/common/js/CosRequest.js'),
         }
     },
     plugins: [
